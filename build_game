@@ -1,0 +1,3 @@
+#!/bin/sh
+
+g++ ./src/Main.cpp ./src/Frame.cpp ./src/TxtImage.cpp ./src/Collision.cpp -std=c++11 $1 -o tom_game -l ncurses
