@@ -15,6 +15,7 @@
 namespace
 {
   int stars_index;
+  int tnts_index;
 }
 
 
@@ -60,6 +61,7 @@ int main()
 
   const char* const TNT_TXT_IMAGE         = TxtImage::load(TxtImage::TNT_FILE_PATH);
   const long int TNT_TXT_IMAGE_ROW_COUNT  = TxtImage::calculate_row_count(TNT_TXT_IMAGE);
+  const char* TNT_EXPLOSION_TXT_IMAGE     = TxtImage::load(TxtImage::TNT_EXPLOSION_FILE_PATH);
   const char* const STAR_TXT_IMAGE        = TxtImage::load(TxtImage::STAR_FILE_PATH);
   const long int STAR_TXT_IMAGE_ROW_COUNT = TxtImage::calculate_row_count(STAR_TXT_IMAGE);
 
@@ -165,6 +167,7 @@ int main()
       {
         falling_entities[i].buffer_index = (rand() % Frame::COLUMN_COUNT) - ( (rand() % MAX_UPWARD_FALLING_ENTITY_SPAWN_OFFSET) * Frame::COLUMN_COUNT );  // choose random index in first row then move back MAX_UPWARD_FALLING_ENTITY_SPAWN_OFFSET chars
         falling_entities[i].velocity     = (rand() % 30) + 10;
+        if (i < TNT_COUNT) falling_entities[i].txt_image = TNT_TXT_IMAGE;
       }
 
       Collision::set(falling_entities[i].collision_lines, falling_entities[i].txt_image, falling_entities[i].buffer_index); 
@@ -178,6 +181,9 @@ int main()
         player.buffer_index = player_starting_buffer_index;
         Collision::set(player_collision_lines, player.txt_image, player.buffer_index);
         current_score = 0;
+
+        tnts_index = i / TNT_TXT_IMAGE_ROW_COUNT;
+        tnts[tnts_index].txt_image = TNT_EXPLOSION_TXT_IMAGE;
       }
     }
 
