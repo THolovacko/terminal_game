@@ -1,2 +1,1 @@
-# terminal_game
-A game that runs in a UNIX terminal where the player moves left or right to avoid waves of bombs and collect stars
+[![Terminal Game](help/yt_screenshot.png?raw=true "Terminal Game")](https://www.youtube.com/watch?v=XhQm0nkjZbM "Terminal Game")
